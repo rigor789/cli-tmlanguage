@@ -70,7 +70,7 @@ const commandName: IncludeRule = {
 const commandArgs: MatchRule = {
   key: "commandArgs",
   scope: "keyword.command-arg.cli",
-  match: `[\\./~@]*(\\b[\\w\\/:\\\\-]+\\b/?`,
+  match: `[\\./~@]*\\b[\\w\\/:\\\\-]+\\b/?`,
 };
 
 const singleQuoteString: BeginEndRule = {

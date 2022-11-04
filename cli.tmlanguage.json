@@ -32,7 +32,7 @@
     "$self": {},
     "commandArgs": {
       "name": "keyword.command-arg.cli",
-      "match": "[\\./~@]*?(\\b[\\w\\/:\\\\-]+\\b)/?"
+      "match": "[\\./~@]*\\b[\\w\\/:\\\\-]+\\b/?"
     },
     "commandName": {
       "patterns": [
