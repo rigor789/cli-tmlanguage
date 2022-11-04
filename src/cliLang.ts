@@ -70,7 +70,38 @@ const commandName: IncludeRule = {
 const commandArgs: MatchRule = {
   key: "commandArgs",
   scope: "keyword.command-arg.cli",
-  match: `[\\./]*?\\b[\\w\\/:\\\\]+\\b/?`,
+  match: `[\\./~@]*(\\b[\\w\\/:\\\\-]+\\b/?`,
+};
+
+const singleQuoteString: BeginEndRule = {
+  key: "singleQuoteString",
+  scope: "string.cli",
+  begin: "'",
+  end: "'",
+  beginCaptures: {
+    0: { scope: punctuation },
+  },
+  endCaptures: {
+    0: { scope: punctuation },
+  },
+};
+
+const doubleQuoteString: BeginEndRule = {
+  key: "doubleQuoteString",
+  scope: "string.cli",
+  begin: `"`,
+  end: `"`,
+  beginCaptures: {
+    0: { scope: punctuation },
+  },
+  endCaptures: {
+    0: { scope: punctuation },
+  },
+};
+
+const strings: IncludeRule = {
+  key: "strings",
+  patterns: [singleQuoteString, doubleQuoteString],
 };
 
 const flagDot: MatchRule = {
@@ -94,7 +125,10 @@ const flags: IncludeRule = {
           patterns: [flagDot],
         },
         3: { scope: "keyword.operator.assignment.cli" },
-        4: { scope: "string.cli" },
+        4: {
+          scope: "string.cli",
+          patterns: [strings],
+        },
       },
     },
     {
@@ -135,25 +169,6 @@ const comments: IncludeRule = {
   patterns: [lineComment],
 };
 
-const singleQuoteString: BeginEndRule = {
-  key: "singleQuoteString",
-  scope: "string.cli",
-  begin: "'",
-  end: "'",
-};
-
-const doubleQuoteString: BeginEndRule = {
-  key: "doubleQuoteString",
-  scope: "string.cli",
-  begin: `"`,
-  end: `"`,
-};
-
-const strings: IncludeRule = {
-  key: "strings",
-  patterns: [singleQuoteString, doubleQuoteString],
-};
-
 const interpolations: BeginEndRule = {
   key: "interpolation",
   scope: tm.meta,
@@ -184,8 +199,8 @@ const output: BeginEndRule = {
   },
   patterns: [
     // @ts-ignore
-    { key: "source.json" }
-  ]
+    { key: "source.json" },
+  ],
 };
 
 const commands: IncludeRule = {

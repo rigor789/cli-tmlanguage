@@ -14,7 +14,7 @@ async function main() {
   await writeFile(themePath, JSON.stringify(theme, null, 2));
 
   const highlighter = await getHighlighter({
-    theme: theme, 
+    theme: theme,
     langs: [
       {
         id: "cli",
@@ -26,25 +26,25 @@ async function main() {
 
   const example = [
     "npm install -g nativescript",
-    "ns -v -v.test",
-    "ns migrate && ns clean",
-    `ns run ios --for-device --flag --flagTest="value" --flag=value --env.foo="bar"`,
-    `test --flag='cool' -v`,
-    "# comment",
-    "$ some command --cool // with a $ prefix",
-    "ns do stuff # cool",
-    "ns do stuff // cool",
-    "",
-    "// interpolation!",
-    "ln -s $(which python -v --flag --flag.name --flag-with='value') /usr/local/bin",
-    "",
-    "cp C:\\foo\\bar\\baz /to/target",
-    "",
-    "// multi-line",
+    "yarn add -D @rigor789/cli-tmlanguage",
+    "ps -ax | grep 'FOO'",
+    "echo 'Hello' >> world.txt",
+    "node -v && javac -version",
+    "npm i --save-dev tsx",
+    `ns run ios --for-device --no-hmr --env.env=stage`,
+    "# comments",
+    "// comments",
+    "git pull # with an inline comment",
+    "git push // With an inline comment",
+    "$ ls -al // command with a $ prefix",
+    "// interpolation:",
+    "echo $(node -v && javac -version && cat test.txt) ~/Downloads/something.md",
+    "cp C:\\foo\\bar\\baz.txt ~/path/to/target/",
+    "// multi-line & placeholders",
     `ns build android --release \\`,
     `       --key-store-path <path-to-your-keystore> \\`,
-    `       --key-store-alias-password <your-alias-password>`,
-    "",
+    `       --key-store-password <your-keystore-password>`,
+    "rm -rf / # hehe",
     "// example output rendering",
     `cat ../package.json`,
     "$<<<",
@@ -61,9 +61,6 @@ async function main() {
       2
     ),
     ">>>$",
-    "ls -al | grep test",
-    `echo "cat" > pool.txt`,
-    // `ns build android --release --key-store-path C:\\keystore\\NativeScriptApp.keystore --key-store-password sample_password --key-store-alias NativeScriptApp --key-store-alias-password sample_password`
   ].join("\n");
   const html = highlighter.codeToHtml(example.trim(), { lang: "cli" });
 

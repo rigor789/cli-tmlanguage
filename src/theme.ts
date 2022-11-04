@@ -7,7 +7,7 @@ export const theme: IShikiTheme = {
   bg: colors.gray[900],
   type: "dark",
   colors: {
-    "editor.foreground": colors.gray[100],
+    "editor.foreground": colors.gray[300],
     "editor.background": colors.gray[900],
   },
   settings: [
@@ -29,7 +29,7 @@ export const theme: IShikiTheme = {
       name: "CLI Command Arg",
       scope: ["keyword.command-arg.cli"],
       settings: {
-        foreground: colors.amber[400],
+        foreground: colors.lime[400],
       },
     },
     {
@@ -58,7 +58,7 @@ export const theme: IShikiTheme = {
       name: "CLI String",
       scope: ["string.cli"],
       settings: {
-        foreground: colors.lime[300],
+        foreground: colors.rose[400],
       },
     },
     {

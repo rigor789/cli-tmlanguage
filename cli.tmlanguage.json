@@ -32,7 +32,7 @@
     "$self": {},
     "commandArgs": {
       "name": "keyword.command-arg.cli",
-      "match": "[\\./]*?\\b[\\w\\/:\\\\]+\\b/?"
+      "match": "[\\./~@]*?(\\b[\\w\\/:\\\\-]+\\b)/?"
     },
     "commandName": {
       "patterns": [
@@ -114,14 +114,29 @@
           "name": "keyword.operator.assignment.cli"
         },
         "4": {
-          "name": "string.cli"
+          "name": "string.cli",
+          "patterns": [
+            {
+              "include": "#strings"
+            }
+          ]
         }
       }
     },
     "doubleQuoteString": {
       "name": "string.cli",
       "begin": "\"",
-      "end": "\""
+      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.cli"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.cli"
+        }
+      }
     },
     "flagDot": {
       "name": "punctuation.cli",
@@ -219,7 +234,17 @@
     "singleQuoteString": {
       "name": "string.cli",
       "begin": "'",
-      "end": "'"
+      "end": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.cli"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.cli"
+        }
+      }
     },
     "source.json": {},
     "strings": {
